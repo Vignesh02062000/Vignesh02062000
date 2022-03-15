@@ -1,0 +1,141 @@
+package com.cg.mts.pojo;
+
+import javax.persistence.*;
+
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import java.time.*;
+
+@Entity
+@Table(name = "shhow")
+@DynamicUpdate
+public class Show {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int showId;
+	
+	private String showStartTime;
+	
+	private String showEndTime;
+	
+	private String showName;
+	@OneToOne
+	private Movie movie;
+	@JsonIgnore
+	@ManyToOne
+	private Screen screen;
+	@JsonIgnore
+	@ManyToOne
+	private Theatre theatre;
+	@JsonIgnore
+	@OneToOne
+	private Booking booking;
+
+	private String showDate;
+
+	public Show() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Show(int showId, String showStartTime, String showEndTime, String showName, Movie movie, Screen screen,
+			Theatre theatre, Booking booking, String showDate) {
+		super();
+		this.showId = showId;
+		this.showStartTime = showStartTime;
+		this.showEndTime = showEndTime;
+		this.showName = showName;
+		this.movie = movie;
+		this.screen = screen;
+		this.theatre = theatre;
+		this.booking = booking;
+		this.showDate = showDate;
+	}
+
+	public int getShowId() {
+		return showId;
+	}
+
+	public void setShowId(int showId) {
+		this.showId = showId;
+	}
+
+	public String getShowStartTime() {
+		return showStartTime;
+	}
+
+	public void setShowStartTime(String showStartTime) {
+		this.showStartTime = showStartTime;
+	}
+
+	public String getShowEndTime() {
+		return showEndTime;
+	}
+
+	public void setShowEndTime(String showEndTime) {
+		this.showEndTime = showEndTime;
+	}
+
+	public String getShowName() {
+		return showName;
+	}
+
+	public void setShowName(String showName) {
+		this.showName = showName;
+	}
+
+	public Movie getMovie() {
+		return movie;
+	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
+
+	public Screen getScreen() {
+		return screen;
+	}
+
+	public void setScreen(Screen screen) {
+		this.screen = screen;
+	}
+
+	public Theatre getTheatre() {
+		return theatre;
+	}
+
+	public void setTheatre(Theatre theatre) {
+		this.theatre = theatre;
+	}
+
+	public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
+
+	public String getShowDate() {
+		return showDate;
+	}
+
+	public void setShowDate(String showDate) {
+		this.showDate = showDate;
+	}
+
+	
+	
+
+	
+
+}
